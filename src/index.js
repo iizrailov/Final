@@ -27,7 +27,7 @@ var SortBar = require('./components/SortBar')
 // Firebase configuration
 var Rebase = require('re-base')
 var base = Rebase.createClass({
-  apiKey: "...",   // replace with your Firebase application's API key
+  apiKey: "AIzaSyDp2Ek2eSoTGL4-osj1RJWdTUvnPtD6rJA",   // replace with your Firebase application's API key
   databaseURL: "https://final-7dc9c.firebaseapp.com", // replace with your Firebase application's database URL
 })
 
