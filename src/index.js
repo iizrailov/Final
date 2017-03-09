@@ -28,7 +28,7 @@ var SortBar = require('./components/SortBar')
 var Rebase = require('re-base')
 var base = Rebase.createClass({
   apiKey: "...",   // replace with your Firebase application's API key
-  databaseURL: "...", // replace with your Firebase application's database URL
+  databaseURL: "https://final-7dc9c.firebaseapp.com", // replace with your Firebase application's database URL
 })
 
 var App = React.createClass({
@@ -53,15 +53,30 @@ var App = React.createClass({
     })
   },
   viewChanged: function(view) {
-    // View is either "latest" (movies sorted by release), "alpha" (movies
-    // sorted A-Z), or "map" (the data visualized)
-    // We should probably do the sorting and setting of movies in state here.
-    // You should really look at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-    this.setState({
-      currentView: view
-    })
-  },
-  renderMovieDetails: function() {
+   // View is either "latest" (movies sorted by release), "alpha" (movies
+   // sorted A-Z), or "map" (the data visualized)
+   // We should probably do the sorting and setting of movies in state here.
+   // You should really look at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+   if(view === 'latest')
+     {this.setState({
+       currentView: view,
+       movies:movieData.sort(this.movieCompareByReleased)
+     })
+     }
+   if(view === 'alpha')
+     {this.setState({
+       currentView: view,
+       movies:movieData.sort(this.movieCompareByTitle)
+     })
+     }
+   else {
+     this.setState({
+       currentView:view,
+     })
+     }
+   },
+     renderMovieDetails: function() {
     if (this.state.currentMovie == null) {
       return <NoCurrentMovie resetMovieListClicked={this.resetMovieListClicked} />
     } else {
